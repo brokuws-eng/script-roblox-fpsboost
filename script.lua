@@ -1,5 +1,5 @@
 -- ================================================================
--- GOLLHUB FPS BOOST MAX (HILANGKAN STUD + OPTIMASI)
+-- GOLLHUB FPS BOOST + HILANGKAN TEMBOK
 -- ================================================================
 
 local Lighting = game:GetService("Lighting")
@@ -7,7 +7,16 @@ local Workspace = game:GetService("Workspace")
 local CoreGui = game:GetService("CoreGui")
 
 -- ================================================================
--- 1. MENGHILANGKAN TITIK STUD (SMOOTH PLASTIC)
+-- 1. MENGHILANGKAN TEMBOK
+-- ================================================================
+for _, obj in ipairs(Workspace:GetDescendants()) do
+    if obj:IsA("BasePart") and obj.Size.Y > 10 and obj.Transparency == 0 then
+        pcall(function() obj:Destroy() end)
+    end
+end
+
+-- ================================================================
+-- 2. MENGHILANGKAN STUD (SMOOTH PLASTIC)
 -- ================================================================
 for _, part in ipairs(Workspace:GetDescendants()) do
     if part:IsA("BasePart") then
@@ -22,14 +31,14 @@ for _, part in ipairs(Workspace:GetDescendants()) do
 end
 
 -- ================================================================
--- 2. MENURUNKAN KUALITAS CAHAYA & BAYANGAN
+-- 3. MENURUNKAN KUALITAS CAHAYA & BAYANGAN
 -- ================================================================
 Lighting.GlobalShadows = false
 Lighting.FogEnd = 1000
 Lighting.ExposureCompensation = -1.0
 
 -- ================================================================
--- 3. MENGHAPUS PARTIKEL, TEKSTUR, DAN SUARA YANG BERAT
+-- 4. MENGHAPUS PARTIKEL, TEKSTUR, DAN SUARA
 -- ================================================================
 task.spawn(function()
     while true do
@@ -54,7 +63,7 @@ task.spawn(function()
 end)
 
 -- ================================================================
--- 4. MENGHAPUS GUI YANG TIDAK PERLU (TAPI JAGA GUI DELTA)
+-- 5. MENGHAPUS GUI YANG TIDAK PERLU (JAGA GUI DELTA)
 -- ================================================================
 task.spawn(function()
     while true do
@@ -66,7 +75,3 @@ task.spawn(function()
         task.wait(10)
     end
 end)
-
--- ================================================================
--- PRINT STATUS
--- ================================================================
