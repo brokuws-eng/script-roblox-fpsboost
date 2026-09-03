@@ -14,7 +14,6 @@ local LocalPlayer = Players.LocalPlayer
 -- 1. TURUNKAN KUALITAS GRAFIS
 -- ==============================================
 
--- Set kualitas grafis ke level terendah (Level 1)
 pcall(function()
     UserSettings.GameSettings.GraphicsQualityLevel = Enum.QualityLevel.Level1
 end)
@@ -23,13 +22,11 @@ end)
 -- 2. MATIKAN EFEK VISUAL
 -- ==============================================
 
--- Matikan bayangan
 Lighting.GlobalShadows = false
 Lighting.FogEnd = 1
 Lighting.FogStart = 1
 Lighting.Brightness = 1
 
--- Turunkan kualitas air
 pcall(function()
     Workspace.Terrain.WaterWaveSize = 0
     Workspace.Terrain.WaterWaveSpeed = 0
@@ -42,10 +39,10 @@ end)
 local function removeParticles()
     for _, obj in pairs(Workspace:GetDescendants()) do
         pcall(function()
-            if obj:IsA("ParticleEmitter") or 
-               obj:IsA("Trail") or 
-               obj:IsA("Smoke") or 
-               obj:IsA("Fire") or 
+            if obj:IsA("ParticleEmitter") or
+               obj:IsA("Trail") or
+               obj:IsA("Smoke") or
+               obj:IsA("Fire") or
                obj:IsA("Sparkles") or
                obj:IsA("BloomEffect") or
                obj:IsA("BlurEffect") or
@@ -113,3 +110,6 @@ local function showNotification()
         Duration = 5
     })
 end
+
+showNotification()
+print("✅ Script FPS Boost berhasil dijalankan!")
