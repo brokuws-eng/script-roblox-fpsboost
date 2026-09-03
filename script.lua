@@ -1,12 +1,14 @@
 -- ================================================================
--- GOLLHUB FPS BOOST (STATIS - TANPA LOOP AGRESIF)
+-- GOLLHUB FPS BOOST MAX (STATIS - TANPA LOOP AGRESIF)
 -- ================================================================
 
 local Lighting = game:GetService("Lighting")
 local Workspace = game:GetService("Workspace")
 local CoreGui = game:GetService("CoreGui")
 
--- 1. MENGHILANGKAN STUD (SMOOTH PLASTIC)
+-- ================================================================
+-- 1. MENGHILANGKAN TITIK STUD (SMOOTH PLASTIC)
+-- ================================================================
 for _, part in ipairs(Workspace:GetDescendants()) do
     if part:IsA("BasePart") then
         part.Material = Enum.Material.SmoothPlastic
@@ -19,19 +21,16 @@ for _, part in ipairs(Workspace:GetDescendants()) do
     end
 end
 
--- 2. MENGHILANGKAN TEMBOK
-for _, obj in ipairs(Workspace:GetDescendants()) do
-    if obj:IsA("BasePart") and obj.Size.Y > 10 and obj.Transparency == 0 then
-        pcall(function() obj:Destroy() end)
-    end
-end
-
--- 3. MENURUNKAN KUALITAS CAHAYA & BAYANGAN
+-- ================================================================
+-- 2. MENURUNKAN KUALITAS CAHAYA & BAYANGAN
+-- ================================================================
 Lighting.GlobalShadows = false
-Lighting.FogEnd = 1000
-Lighting.ExposureCompensation = -1.0
+Lighting.FogEnd = 800
+Lighting.ExposureCompensation = -5.0
 
--- 4. MENGHAPUS PARTIKEL, TEKSTUR, DAN SUARA (SATU KALI SAJA)
+-- ================================================================
+-- 3. MENGHAPUS PARTIKEL, TEKSTUR, DAN SUARA (SATU KALI SAJA)
+-- ================================================================
 for _, descendant in ipairs(Workspace:GetDescendants()) do
     if descendant:IsA("ParticleEmitter") or descendant:IsA("Trail") or descendant:IsA("Fire") or descendant:IsA("Smoke") or descendant:IsA("Sparkles") then
         descendant.Enabled = false
@@ -48,9 +47,15 @@ for _, sound in ipairs(Workspace:GetDescendants()) do
     end
 end
 
--- 5. MENGHAPUS GUI YANG TIDAK PERLU (SATU KALI SAJA)
+-- ================================================================
+-- 4. MENGHAPUS GUI YANG TIDAK PERLU (SATU KALI SAJA)
+-- ================================================================
 for _, gui in ipairs(CoreGui:GetChildren()) do
     if gui.Name ~= "GollHub" and gui.Name ~= "Delta" and gui.Name ~= "DeltaHub" and gui.Name ~= "DeltaMain" then
         pcall(function() gui:Destroy() end)
     end
 end
+
+-- ================================================================
+-- PRINT STATUS
+-- ================================================================
